@@ -1,0 +1,17 @@
+.selectList {
+  display: flex;
+  flex-flow: row nowrap;
+  border-bottom: 1em solid #eee;
+}
+
+.selectList__option {
+  flex: 1 0 50%;
+  background-color: #ccc;
+  text-align: center;
+  padding: 1em .1em;
+  font-size: 1.2em;
+}
+
+.selectList--selected {
+  background-color: #eee;
+}
