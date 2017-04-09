@@ -25,7 +25,7 @@ const getTypeImage = type => {
 }
 
 const MortyRow = (props) => {
-  return <tr className='mortyRow'>
+  return <tr className={`mortyRow ${props.isMine ? 'mortyRow--selected' : ''}`} onClick={props.onClick}>
     <td>{props.id}</td>
     <td>
       {getAvatar(props.id, props.name)}

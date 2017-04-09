@@ -1,2 +1,10 @@
 .mortyRow {
 }
+
+.mortyRow--selected {
+  background-color: #aee6f6;
+}
+
+tr.mortyRow--selected:nth-child(even) {
+  background-color: #a2e2f4;
+}
