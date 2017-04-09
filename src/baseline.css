@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   line-height: 1.15;
   text-size-adjust: 100%;
@@ -6,4 +10,31 @@ html {
 body {
   margin: 0;
   font-family: sans-serif;
+}
+
+table {
+  background-color: #eee;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+th,
+td {
+  padding: .1em .4em;
+  vertical-align: middle;
+  text-align: left;
+}
+
+th {
+  padding-bottom: 1em;
+}
+
+picture {
+  display: inline-block;
+  vertical-align: middle;
+  margin: .1em .5em .1em 0;
 }

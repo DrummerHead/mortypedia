@@ -1,16 +1,31 @@
 import React from 'react';
 import padStart from 'lodash.padstart';
 
-const getAvatar = (id, name) =>
-  <img src={`/images/heads/icon_${padStart(id.toString(), 3, '0')}.png`} alt={name} />;
+import './morty-row.css'
 
-const getTypeImage = type =>
-  type === 'Normal'
-    ? ''
-    : <img src={`/images/types/${type.toLowerCase()}.png`} alt={type} />;
+
+const getAvatar = (id, name) => {
+  const imageUrl = `/images/heads/icon_${padStart(id.toString(), 3, '0')}.png`;
+  return <picture>
+    <source srcSet={`${imageUrl} 2x`} />
+    <img src={imageUrl} alt={name} />
+  </picture>
+}
+
+const getTypeImage = type => {
+  if (type === 'Normal') {
+    return '';
+  } else {
+    const imageUrl = `/images/types/${type.toLowerCase()}.png`;
+    return <picture>
+        <source srcSet={`${imageUrl} 2x`} />
+        <img src={imageUrl} alt={type} />
+      </picture>
+  }
+}
 
 const MortyRow = (props) => {
-  return <tr>
+  return <tr className='mortyRow'>
     <td>{props.id}</td>
     <td>
       {getAvatar(props.id, props.name)}
