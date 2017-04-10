@@ -5,6 +5,7 @@ import UserList from './UserList'
 import MortyRow from './MortyRow'
 
 import './selectList.css'
+import './search.css'
 
 const userList = new UserList();
 
@@ -13,10 +14,13 @@ class App extends React.Component {
     super();
     this.state = {
       mortyList: userList.getAll(),
-      isAll: true
+      isAll: true,
+      searchText: ''
     }
     this.selectMorty = this.selectMorty.bind(this);
     this.isMine = this.isMine.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
 
   selectMorty(ev, id) {
@@ -43,6 +47,18 @@ class App extends React.Component {
     })
   }
 
+  handleSearch(ev) {
+    this.setState({
+      searchText: ev.target.value
+    })
+  }
+
+  handleClear() {
+    this.setState({
+      searchText: ''
+    })
+  }
+
   render() {
     const mortyList = this.state.isAll
       ? data
@@ -64,11 +80,17 @@ class App extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {mortyList.sort((a, b) => b.total - a.total || b.atk - a.atk || b.id - a.id ).map(morty =>
-              <MortyRow key={morty.id} onClick={ev => this.selectMorty(ev, morty.id)} {...morty} isMine={this.isMine(morty.id)} />
+            {mortyList
+              .filter(morty => morty.name.toLowerCase().includes(this.state.searchText.toLowerCase()))
+              .sort((a, b) => b.total - a.total || b.atk - a.atk || b.id - a.id ).map(morty =>
+                <MortyRow key={morty.id} onClick={ev => this.selectMorty(ev, morty.id)} {...morty} isMine={this.isMine(morty.id)} />
             )}
           </tbody>
         </table>
+        <div className='search'>
+          <input type='search' className='search__input' value={this.state.searchText} onChange={this.handleSearch} />
+          <div className='search__clear' onClick={this.handleClear} >×</div>
+        </div>
       </main>
     );
   }

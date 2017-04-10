@@ -1,0 +1,23 @@
+.search {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: .5em;
+  background-color: #ccc;
+}
+
+.search__input {
+  flex: 1 0;
+  border-radius: 0;
+  font-size: 1.2em;
+  background-color: #fff;
+}
+
+.search__clear {
+  flex: 0 0;
+  padding: .4em .4em .4em .7em;
+  justify-content: center;
+}
