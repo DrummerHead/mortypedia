@@ -97,6 +97,13 @@ class App extends React.Component {
               <th onClick={() => this.setSorting('id')} className='mortyTable--sortable'>id</th>
               <th>name</th>
               <th>type</th>
+              <th className='mortyTable--tertiary'>xp</th>
+              <th className='mortyTable--secondary'>hp</th>
+              <th className='mortyTable--secondary'>atk</th>
+              <th className='mortyTable--secondary'>def</th>
+              <th className='mortyTable--tertiary'>spd</th>
+              <th className='mortyTable--tertiary'>rare</th>
+              <th className='mortyTable--tertiary'>bdgs</th>
               <th onClick={() => this.setSorting('total')} className='mortyTable--sortable'>total</th>
             </tr>
           </thead>

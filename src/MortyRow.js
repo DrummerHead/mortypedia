@@ -32,6 +32,13 @@ const MortyRow = (props) => {
       <a href={`https://pocketmortys.net${props.url}`}>{props.name}</a>
     </td>
     <td>{getTypeImage(props.type)}</td>
+    <td className='mortyTable--tertiary'>{props.xp}</td>
+    <td className='mortyTable--secondary'>{props.hp}</td>
+    <td className='mortyTable--secondary'>{props.atk}</td>
+    <td className='mortyTable--secondary'>{props.def}</td>
+    <td className='mortyTable--tertiary'>{props.spd}</td>
+    <td className='mortyTable--tertiary'>{props.isRare ? 'Y' : 'N'}</td>
+    <td className='mortyTable--tertiary'>{props.badgesReq}</td>
     <td>{props.total}</td>
   </tr>
 };

@@ -5,3 +5,20 @@
   text-decoration: underline;
   color: #2637a0;
 }
+
+.mortyTable--secondary,
+.mortyTable--tertiary {
+  display: none;
+}
+
+@media (min-width: 500px) {
+  .mortyTable--secondary {
+    display: table-cell;
+  }
+}
+
+@media (min-width: 680px) {
+  .mortyTable--tertiary {
+    display: table-cell;
+  }
+}
