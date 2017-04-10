@@ -5,7 +5,7 @@ import './morty-row.css'
 
 
 const getAvatar = (id, name) => {
-  const imageUrl = `/images/heads/icon_${padStart(id.toString(), 3, '0')}.png`;
+  const imageUrl = `${process.env.PUBLIC_URL}/images/heads/icon_${padStart(id.toString(), 3, '0')}.png`;
   return <picture>
     <source srcSet={`${imageUrl} 2x`} />
     <img src={imageUrl} alt={name} />
@@ -16,7 +16,7 @@ const getTypeImage = type => {
   if (type === 'Normal') {
     return '';
   } else {
-    const imageUrl = `/images/types/${type.toLowerCase()}.png`;
+    const imageUrl = `${process.env.PUBLIC_URL}/images/types/${type.toLowerCase()}.png`;
     return <picture>
         <source srcSet={`${imageUrl} 2x`} />
         <img src={imageUrl} alt={type} />

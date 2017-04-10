@@ -2,6 +2,7 @@
   "name": "mortypedia",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://mcdlr.com/mortypedia/",
   "devDependencies": {
     "react-scripts": "0.9.5"
   },
