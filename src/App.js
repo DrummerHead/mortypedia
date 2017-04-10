@@ -62,7 +62,12 @@ class App extends React.Component {
   sortingPredicate() {
     switch (this.state.sortBy) {
       case 'total':
-        return (a, b) => b.total - a.total || b.atk - a.atk || a.id - b.id;
+        return (a, b) =>
+          b.total - a.total ||
+          b.atk - a.atk ||
+          b.hp - a.hp ||
+          b.def - a.def ||
+          a.id - b.id;
       case 'id':
         return (a, b) => a.id - b.id;
     }
