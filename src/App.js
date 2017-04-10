@@ -6,6 +6,7 @@ import MortyRow from './MortyRow'
 
 import './selectList.css'
 import './search.css'
+import './mortyTable.css'
 
 const userList = new UserList();
 
@@ -15,10 +16,14 @@ class App extends React.Component {
     this.state = {
       mortyList: userList.getAll(),
       isAll: true,
-      searchText: ''
+      searchText: '',
+      sortBy: 'total'
     }
+
     this.selectMorty = this.selectMorty.bind(this);
     this.isMine = this.isMine.bind(this);
+    this.setSorting = this.setSorting.bind(this);
+    this.sortingPredicate = this.sortingPredicate.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleClear = this.handleClear.bind(this);
   }
@@ -43,8 +48,24 @@ class App extends React.Component {
 
   selectAll(isAll) {
     this.setState({
-      isAll: isAll
+      isAll
     })
+  }
+
+  setSorting(sortBy) {
+    this.setState({
+      sortBy
+    })
+
+  }
+
+  sortingPredicate() {
+    switch (this.state.sortBy) {
+      case 'total':
+        return (a, b) => b.total - a.total || b.atk - a.atk || a.id - b.id;
+      case 'id':
+        return (a, b) => a.id - b.id;
+    }
   }
 
   handleSearch(ev) {
@@ -70,19 +91,20 @@ class App extends React.Component {
           <span className={`selectList__option ${this.state.isAll ? 'selectList--selected' : ''}`} onClick={() => this.selectAll(true)}>All</span>
           <span className={`selectList__option ${!this.state.isAll ? 'selectList--selected' : ''}`} onClick={() => this.selectAll(false)}>Mine</span>
         </div>
-        <table>
+        <table className='mortyTable'>
           <thead>
             <tr>
-              <th>id</th>
+              <th onClick={() => this.setSorting('id')} className='mortyTable--sortable'>id</th>
               <th>name</th>
               <th>type</th>
-              <th>total</th>
+              <th onClick={() => this.setSorting('total')} className='mortyTable--sortable'>total</th>
             </tr>
           </thead>
           <tbody>
             {mortyList
               .filter(morty => morty.name.toLowerCase().includes(this.state.searchText.toLowerCase()))
-              .sort((a, b) => b.total - a.total || b.atk - a.atk || b.id - a.id ).map(morty =>
+              .sort(this.sortingPredicate())
+              .map(morty =>
                 <MortyRow key={morty.id} onClick={ev => this.selectMorty(ev, morty.id)} {...morty} isMine={this.isMine(morty.id)} />
             )}
           </tbody>

@@ -1,0 +1,7 @@
+.mortyTable {
+}
+
+.mortyTable--sortable {
+  text-decoration: underline;
+  color: #2637a0;
+}
