@@ -73,6 +73,42 @@ class App extends React.Component {
     }
   }
 
+  highlightFirstOfType() {
+    const flags = {
+      foundRock: false,
+      foundPaper: false,
+      foundScissors: false,
+    }
+
+    const decideIfFirstOfType = (flags, flag, morty) => {
+      if (flags[flag]) {
+        morty.firstOfType = false;
+      } else {
+        morty.firstOfType = true;
+        flags[flag] = true;
+      }
+    }
+
+    return (morty) => {
+      if (!(flags.foundRock && flags.foundPaper && flags.foundScissors)) {
+        switch (morty.type) {
+          case 'Rock':
+            decideIfFirstOfType(flags, 'foundRock', morty);
+            break;
+          case 'Paper':
+            decideIfFirstOfType(flags, 'foundPaper', morty);
+            break;
+          case 'Scissors':
+            decideIfFirstOfType(flags, 'foundScissors', morty);
+            break;
+        }
+      } else {
+        morty.firstOfType = false;
+      }
+      return morty;
+    }
+  }
+
   handleSearch(ev) {
     this.setState({
       searchText: ev.target.value
@@ -116,6 +152,7 @@ class App extends React.Component {
             {mortyList
               .filter(morty => morty.name.toLowerCase().includes(this.state.searchText.toLowerCase()))
               .sort(this.sortingPredicate())
+              .map(this.highlightFirstOfType())
               .map(morty =>
                 <MortyRow key={morty.id} onClick={ev => this.selectMorty(ev, morty.id)} {...morty} isMine={this.isMine(morty.id)} />
             )}

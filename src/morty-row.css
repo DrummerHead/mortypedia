@@ -8,3 +8,7 @@
 tr.mortyRow--selected:nth-child(even) {
   background-color: #aee6f6;
 }
+
+.mortyRow--first-of-type .mortyRow__type {
+  filter: drop-shadow(0 0 .25em #ffffb4) drop-shadow(0 0 .75em #fff200);
+}

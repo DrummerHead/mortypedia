@@ -17,7 +17,7 @@ const getTypeImage = type => {
     return '';
   } else {
     const imageUrl = `${process.env.PUBLIC_URL}/images/types/${type.toLowerCase()}.png`;
-    return <picture>
+    return <picture className='mortyRow__type'>
         <source srcSet={`${imageUrl} 2x`} />
         <img src={imageUrl} alt={type} />
       </picture>
@@ -25,7 +25,7 @@ const getTypeImage = type => {
 }
 
 const MortyRow = (props) => {
-  return <tr className={`mortyRow ${props.isMine ? 'mortyRow--selected' : ''}`} onClick={props.onClick}>
+  return <tr className={`mortyRow ${props.isMine ? 'mortyRow--selected' : ''} ${props.firstOfType ? 'mortyRow--first-of-type' : ''}`} onClick={props.onClick}>
     <td>{props.id}</td>
     <td>
       {getAvatar(props.id, props.name)}
