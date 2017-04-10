@@ -91,7 +91,7 @@ class App extends React.Component {
       : data.filter(morty => this.isMine(morty.id))
 
     return (
-      <main>
+      <main className='hasFixedSearch'>
         <div className='selectList'>
           <span className={`selectList__option ${this.state.isAll ? 'selectList--selected' : ''}`} onClick={() => this.selectAll(true)}>All</span>
           <span className={`selectList__option ${!this.state.isAll ? 'selectList--selected' : ''}`} onClick={() => this.selectAll(false)}>Mine</span>

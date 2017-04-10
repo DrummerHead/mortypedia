@@ -21,3 +21,7 @@
   padding: .4em .4em .4em .7em;
   justify-content: center;
 }
+
+.hasFixedSearch {
+  padding-bottom: 3em;
+}
